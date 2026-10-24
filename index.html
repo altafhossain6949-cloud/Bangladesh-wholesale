@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HaatBazar — বাংলাদেশের পাইকারি বাজার</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f8f5;color:#18352b}
+header{background:#fff;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e9e4;gap:15px;flex-wrap:wrap}
+.logo{font-size:25px;font-weight:bold;color:#176b48}
+nav a{margin-left:18px;text-decoration:none;color:#18352b;font-size:14px}
+.hero{background:#e5f1e8;padding:65px 7%;text-align:center}
+.hero h1{font-size:clamp(30px,5vw,48px);margin:0 0 15px}
+.hero p{color:#52665a;font-size:17px;line-height:1.7}
+.search{display:flex;max-width:650px;margin:28px auto 0;gap:8px}
+input,select,button{padding:14px;border:1px solid #d5ddd6;border-radius:8px;font-size:15px}
+.search input{flex:1;min-width:0}
+button{background:#176b48;color:white;border:0;cursor:pointer}
+section{padding:38px 7%}
+h2{margin-top:0}
+.categories,.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:15px}
+.category,.card{background:white;padding:20px;border:1px solid #e5e9e4;border-radius:12px}
+.category{cursor:pointer}
+.category:hover{border-color:#176b48}
+.category strong{display:block;margin-top:10px}
+.card p{color:#64736a;font-size:14px;line-height:1.6}
+.tag{font-size:12px;background:#e5f1e8;color:#176b48;padding:5px 8px;border-radius:5px}
+.empty{background:white;padding:24px;border-radius:10px;color:#64736a}
+footer{background:#18352b;color:white;padding:30px 7%;line-height:1.8}
+@media(max-width:500px){header{padding:16px 5%}nav a{margin-left:8px}.hero{padding:45px 5%}section{padding:30px 5%}.search{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">HaatBazar</div>
+  <nav><a href="#markets">বাজার খুঁজুন</a><a href="#categories">পণ্য</a><a href="#about">আমাদের সম্পর্কে</a></nav>
+</header>
+
+<div class="hero">
+  <h1>বাংলাদেশের বাজার, এখন এক জায়গায়</h1>
+  <p>আপনার জেলার পাইকারি বাজার খুঁজুন।<br>সঠিক পণ্য ও ব্যবসায়ীদের তথ্য খুঁজে নিন সহজেই।</p>
+  <div class="search">
+    <input id="query" placeholder="পণ্য বা বাজারের নাম লিখুন...">
+    <button id="searchBtn">খুঁজুন</button>
+  </div>
+</div>
+
+<section id="categories">
+  <h2>পণ্যের ক্যাটাগরি</h2>
+  <div class="categories">
+    <div class="category" data-cat="কাপড়"><span>👕</span><strong>কাপড় ও পোশাক</strong></div>
+    <div class="category" data-cat="খাদ্য"><span>🌾</span><strong>খাদ্য ও কৃষিপণ্য</strong></div>
+    <div class="category" data-cat="ইলেকট্রনিকস"><span>📱</span><strong>ইলেকট্রনিকস</strong></div>
+    <div class="category" data-cat="গৃহস্থালি"><span>🏠</span><strong>গৃহস্থালি পণ্য</strong></div>
+    <div class="category" data-cat="হস্তশিল্প"><span>🧺</span><strong>হস্তশিল্প ও স্থানীয় পণ্য</strong></div>
+  </div>
+</section>
+
+<section id="markets">
+  <h2>বাজার ও ব্যবসা খুঁজুন</h2>
+  <p>জেলা নির্বাচন করে বাজারের তথ্য খুঁজুন।</p>
+  <select id="district">
+    <option value="">সব জেলা</option>
+  </select>
+  <div id="results" class="cards" style="margin-top:20px">
+    <div class="empty">এখনো বাজারের তথ্য যোগ করা হয়নি। তথ্য যাচাই করে পর্যায়ক্রমে যোগ করা হবে।</div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>আমাদের লক্ষ্য</h2>
+  <p>বাংলাদেশের বিভিন্ন জেলার পাইকারি বাজার ও স্থানীয় পণ্য সম্পর্কে নির্ভরযোগ্য তথ্য এক জায়গায় তুলে ধরা, যাতে ক্রেতা ও বিক্রেতা সহজে যোগাযোগ করতে পারেন।</p>
+</section>
+
+<footer>
+  <strong>HaatBazar</strong><br>
+  বাংলাদেশের বাজার ও স্থানীয় পণ্যের তথ্যভান্ডার।<br>
+  <small>বাজারের তথ্য যাচাই করে প্রকাশ করা হবে।</small>
+</footer>
+
+<script>
+const districts = [
+"ঢাকা","ফরিদপুর","গাজীপুর","গোপালগঞ্জ","কিশোরগঞ্জ","মাদারীপুর","মানিকগঞ্জ","মুন্সিগঞ্জ","নারায়ণগঞ্জ","নরসিংদী","রাজবাড়ী","শরীয়তপুর","টাঙ্গাইল",
+"চট্টগ্রাম","কক্সবাজার","কুমিল্লা","ব্রাহ্মণবাড়িয়া","চাঁদপুর","ফেনী","লক্ষ্মীপুর","নোয়াখালী","খাগড়াছড়ি","রাঙামাটি","বান্দরবান",
+"রাজশাহী","বগুড়া","জয়পুরহাট","নওগাঁ","নাটোর","চাঁপাইনবাবগঞ্জ","পাবনা","সিরাজগঞ্জ",
+"খুলনা","বাগেরহাট","চুয়াডাঙ্গা","যশোর","ঝিনাইদহ","কুষ্টিয়া","মাগুরা","মেহেরপুর","নড়াইল","সাতক্ষীরা",
+"বরিশাল","বরগুনা","ভোলা","ঝালকাঠি","পটুয়াখালী","পিরোজপুর",
+"সিলেট","হবিগঞ্জ","মৌলভীবাজার","সুনামগঞ্জ",
+"রংপুর","দিনাজপুর","গাইবান্ধা","কুড়িগ্রাম","লালমনিরহাট","নীলফামারী","পঞ্চগড়","ঠাকুরগাঁও",
+"ময়মনসিংহ","জামালপুর","নেত্রকোনা","শেরপুর"
+];
+const select = document.getElementById('district');
+districts.forEach(d => {
+  const option = document.createElement('option');
+  option.value = d;
+  option.textContent = d;
+  select.appendChild(option);
+});
+document.getElementById('searchBtn').addEventListener('click', () => {
+  const q = document.getElementById('query').value.trim();
+  const d = select.value;
+  const message = document.getElementById('results');
+  message.innerHTML = '<div class="empty">বাজারের তথ্যভান্ডার এখনো তৈরি হচ্ছে।' +
+    (q ? ' আপনার অনুসন্ধান: ' + q + '.' : '') +
+    (d ? ' নির্বাচিত জেলা: ' + d + '.' : '') +
+    ' যাচাইকৃত বাজারের তথ্য যোগ হলে এখানে ফলাফল দেখাবে।</div>';
+});
+document.querySelectorAll('.category').forEach(el => {
+  el.addEventListener('click', () => {
+    document.getElementById('query').value = el.dataset.cat;
+    document.getElementById('markets').scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
